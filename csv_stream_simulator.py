@@ -1,11 +1,12 @@
 # csv_stream_simulator.py
 
+
 import pandas as pd
 import requests
 import time
 
 URL = "http://127.0.0.1:8000/telemetry"
-DATA = pd.read_parquet("vehicle_data_from_your_csvs.parquet")
+DATA = pd.read_csv("anomaly.csv")  # Changed from parquet to csv
 
 print("Starting realtime dataset stream...")
 
@@ -33,5 +34,3 @@ for idx, row in DATA.iterrows():
         )
 
     time.sleep(0.5)   # simulate real driving sensor delay
-
-
