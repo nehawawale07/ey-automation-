@@ -4,9 +4,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, roc_auc_score
-import joblib
+import pickle  # Changed from joblib
 
-df = pd.read_parquet("vehicle_data_from_your_csvs.parquet")
+df = pd.read_csv("vehicle_data_from_your_csvs.csv")  # Changed from parquet to csv
 
 features = [
     'Engine RPM [RPM]',
@@ -43,6 +43,9 @@ try:
 except Exception:
     pass
 
-joblib.dump(rf, "rf_model.joblib")
-joblib.dump(scaler, "scaler.joblib")
+# Save with pickle (compatible with joblib-loaded files too)
+with open("rf_model.joblib", "wb") as f:
+    pickle.dump(rf, f)
+with open("scaler.joblib", "wb") as f:
+    pickle.dump(scaler, f)
 print("Saved rf_model.joblib and scaler.joblib")
