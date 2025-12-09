@@ -3,14 +3,14 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 import pandas as pd
 import numpy as np
-import joblib
+import pickle  # Changed from joblib
 import uvicorn
 
 app = FastAPI()
 
-# load models (produced by train script)
-rf = joblib.load("rf_model.joblib")
-scaler = joblib.load("scaler.joblib")
+# load models (produced by train script) - using pickle instead of joblib
+rf = pickle.load(open("rf_model.joblib", "rb"))
+scaler = pickle.load(open("scaler.joblib", "rb"))
 
 FEATURE_ORDER = [
     'Engine RPM [RPM]',
