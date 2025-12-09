@@ -4,12 +4,12 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
-import joblib
+import pickle  # Changed from joblib
 
 # Load trained model + data
-df = pd.read_parquet("vehicle_data_from_your_csvs.parquet")
-rf = joblib.load("rf_model.joblib")
-scaler = joblib.load("scaler.joblib")
+df = pd.read_csv("vehicle_data_from_your_csvs.csv")  # Changed from parquet to csv
+rf = pickle.load(open("rf_model.joblib", "rb"))  # Changed from joblib
+scaler = pickle.load(open("scaler.joblib", "rb"))  # Changed from joblib
 
 FEATURES = [
     'Engine RPM [RPM]',
