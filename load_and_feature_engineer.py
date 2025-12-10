@@ -1,5 +1,7 @@
 # load_and_feature_engineer.py
 
+# load_and_feature_engineer.py
+
 import pandas as pd
 import numpy as np
 
@@ -89,9 +91,9 @@ df['vehicle_health_score'] = 100 - (
 
 df['vehicle_health_score'] = df['vehicle_health_score'].clip(0, 100)
 
-# Save the cleaned and engineered dataset
-df.to_parquet("vehicle_data_from_your_csvs.parquet", index=False)
-print("Saved: vehicle_data_from_your_csvs.parquet")
+# Save the cleaned and engineered dataset as CSV instead of parquet
+df.to_csv("anomaly.csv", index=False)
+print("Saved: anomaly.csv")
 
 print(df[['Engine RPM [RPM]', 'rpm_rolling_mean', 'rpm_rolling_std',
           'Engine Coolant Temperature [°C]', 'Intake Air Temperature [°C]',
